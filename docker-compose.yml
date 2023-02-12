@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  node:
+    container_name: node
+    image: node
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      mongo:
+        condition: service_healthy
+    
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok'
+      interval: 5s
+      timeout: 5s
+      retries: 5

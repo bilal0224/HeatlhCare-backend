@@ -1,12 +1,10 @@
 const express = require("express");
 const app = express();
-const config = require("config");
+const config = require("./config");
 
-const db_host = config.get("mongo.host");
-const db_port = config.get("mongo.port");
 const mongoose = require("mongoose");
-mongoose.connect(`mongodb://${db_host}:${db_port}/mydb`, () => {
-  console.log(`db connected to ${db_host}:${db_port}`);
+mongoose.connect(config.MONGODB_URL, () => {
+  console.log(`db connected: ${config.MONGODB_URL}`);
 });
 
 const bodyParser = require("body-parser");
@@ -19,8 +17,6 @@ app.get("/", (req, res) => {
   res.send("Welcome to AICheckup!");
 });
 
-const app_host = config.get("app.host");
-const app_port = config.get("app.port");
-app.listen(app_port, () => {
-  console.log(`App listening at http://${app_host}:${app_port}`);
+app.listen(config.APP_PORT, () => {
+  console.log(`App listening at http://${config.APP_HOST}:${config.APP_PORT}`);
 });
