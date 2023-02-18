@@ -17,6 +17,15 @@ const questionSchema = new Schema(
   { versionKey: false }
 );
 
-const Question = mongoose.model("Question", questionSchema);
+const rootQuestionIDsSchema = new Schema(
+  { ids: [mongoose.Types.ObjectId] },
+  { versionKey: false }
+);
 
-module.exports = Question;
+const Question = mongoose.model("Question", questionSchema);
+const RootQuestionIDs = mongoose.model(
+  "RootQuestionIDs",
+  rootQuestionIDsSchema
+);
+
+module.exports = { Question, RootQuestionIDs };
