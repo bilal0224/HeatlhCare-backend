@@ -1,5 +1,5 @@
 const { Question } = require("../models/Question");
-const SymptomBucket = require("../models/SymptomBucket");
+const SymptomBucket = require("../models/Symptom");
 
 const addSymptomBucket = async function (req, res) {
   try {

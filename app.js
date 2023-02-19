@@ -17,6 +17,9 @@ app.use("/symptoms", symptomsRouter);
 const questionsRouter = require("./src/routes/questions");
 app.use("/questions", questionsRouter);
 
+const usersRouter = require("./src/routes/users");
+app.use("/", usersRouter);
+
 app.get("/", (req, res) => {
   res.send("Welcome to AICheckup!");
 });
