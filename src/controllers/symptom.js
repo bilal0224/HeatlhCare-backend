@@ -3,8 +3,8 @@ const SymptomBucket = require("../models/Symptom");
 
 const addSymptomBucket = async function (req, res) {
   try {
-    const { symptom_groups } = req.body;
-    const symptomBucket = new SymptomBucket({ symptom_groups: symptom_groups });
+    const { symptom_groups,bucket_name } = req.body;
+    const symptomBucket = new SymptomBucket({ symptom_groups: symptom_groups, bucket_name: bucket_name });
     await symptomBucket.save();
     res.send(symptomBucket);
   } catch (err) {
@@ -26,11 +26,14 @@ const updateSymptomBucket = async function (req, res) {
     const { bucket_id } = req.params;
     const symptomBucket = await SymptomBucket.findOne({ _id: bucket_id });
     if (symptomBucket) {
-      const { symptom_groups, question_id } = req.body;
+      const { symptom_groups, question_id,bucket_name } = req.body;
       if (symptom_groups) {
         symptomBucket.symptom_groups = symptom_groups;
       }
-      const question = await Question.findOne({ _id: question_id });
+      if(bucket_name){
+        symptomBucket.bucket_name= bucket_name
+      }
+      const question = await Question.find({ _id: question_id });
       if (question) {
         symptomBucket.question_id = question_id;
       }

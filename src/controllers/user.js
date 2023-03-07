@@ -9,7 +9,7 @@ const authenticate = async function (req, res) {
       const result = await bcrypt.compare(password, user.password_hash);
       if (result) {
         const token = user.generateAuthToken();
-        res.header({ "x-api-key": token }).send({ message: "success" });
+        res.send({ message: "success", authorization_token :token });
       } else {
         res.status(401).send({ message: "Incorrect password" });
       }

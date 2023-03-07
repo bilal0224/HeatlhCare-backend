@@ -10,7 +10,6 @@ const addRootQuestion = async function (req, res) {
       rootQuestions = new RootQuestionIDs();
     }
     rootQuestions.ids.push(question._id);
-    console.log(rootQuestions);
     await rootQuestions.save();
     res.send(question);
   } catch (err) {
