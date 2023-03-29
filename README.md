@@ -1,4 +1,4 @@
-<h1> AICheckup </h1>
+<h1> HaelthCare </h1>
 
 <p> A medical app for self diagnosis <p>
 
