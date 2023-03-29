@@ -1,4 +1,4 @@
-<h1> HealthCare </h1>
+<h1> HealthCare Initiative </h1>
 
 <p> A medical app for self diagnosis <p>
 
